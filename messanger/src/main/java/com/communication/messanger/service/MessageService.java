@@ -43,12 +43,11 @@ public class MessageService {
     }
 
     @Transactional
-    public List<MessageDTO> sendAndDeleteMessageWithGivenMagicNumber(Integer magicNumber) {
+    public void sendAndDeleteMessageWithGivenMagicNumber(Integer magicNumber) {
         List<Message> messages =  messageRepository.findByMagicNumber(magicNumber);
         messages.forEach(message -> {
             this.emailSenderService.sendEmail(message);
-//            messageRepository.delete(message);
+            messageRepository.delete(message);
         });
-        return  messageConverter.convertMessageToDTO(messages);
     }
 }

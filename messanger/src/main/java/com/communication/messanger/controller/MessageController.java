@@ -1,10 +1,12 @@
 package com.communication.messanger.controller;
 
 import com.communication.messanger.dto.MessageDTO;
+import com.communication.messanger.model.MagicNumber;
 import com.communication.messanger.model.Message;
-import com.communication.messanger.request.body.MagicNumber;
 import com.communication.messanger.service.MessageService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +34,9 @@ public class MessageController {
     }
 
     @PostMapping("/send")
-    public ResponseEntity<List<MessageDTO>> sendAndDeleteMessageWithGivenMagicNumber(@RequestBody MagicNumber magicNumber){
-        return ResponseEntity.ok(messageService.sendAndDeleteMessageWithGivenMagicNumber(magicNumber.getMagicNumber()));
+    public ResponseEntity sendAndDeleteMessageWithGivenMagicNumber(@RequestBody MagicNumber magicNumber){
+        messageService.sendAndDeleteMessageWithGivenMagicNumber(33);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
 }

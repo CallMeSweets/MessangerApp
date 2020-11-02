@@ -1,10 +1,29 @@
 version: "3"
+
+networks:
+  messanger-app:
+
 services:
   cassandradb:
     build: ./init-db
     container_name: cassandradb
     ports:
-      - "127.0.0.1:9042:9042"
+      - "9042:9042"
+    networks:
+      - messanger-app
+
+  messanger:
+    build: ./messanger
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - messanger-app
+    links:
+      - cassandradb
+    depends_on:
+      - cassandradb
+
+
 
 
 
