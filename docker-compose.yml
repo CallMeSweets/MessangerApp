@@ -1,0 +1,17 @@
+version: "3"
+services:
+  cassandradb:
+    build: ./init-db
+    container_name: cassandradb
+    ports:
+      - "127.0.0.1:9042:9042"
+
+
+
+
+
+
+
+
+
+
